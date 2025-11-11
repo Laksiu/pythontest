@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн магазин</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--tg-theme-hint-color, #999999);
+            margin: 20px 0;
+        }
+
+        .product-card {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: var(--tg-theme-button-color, #2481cc);
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .product-title {
+            font-weight: 500;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .buy-button {
+            width: 100%;
+            height: 50px;
+            background: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-button:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 50px;
+            padding: 0 15px;
+            border: 1px solid var(--tg-theme-hint-color, #dddddd);
+            border-radius: 10px;
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            color: var(--tg-theme-text-color, #222222);
+            font-size: 16px;
+        }
+
+        .form-group input::placeholder {
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .back-button {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            color: var(--tg-theme-button-color, #2481cc);
+            border: 1px solid var(--tg-theme-button-color, #2481cc);
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Первый экран: Главная страница магазина -->
+        <div id="main-screen" class="screen active">
+            <div class="header">
+                <h1>Онлайн магазин</h1>
+            </div>
+
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="product-card">
+                <div class="product-image">📦</div>
+                <div class="product-title">Пример товара</div>
+                <div class="product-price">2 500 ₽</div>
+                <button class="buy-button" onclick="showCheckoutScreen()">Купить</button>
+            </div>
+        </div>
+
+        <!-- Второй экран: Оформление покупки -->
+        <div id="checkout-screen" class="screen">
+            <div class="header">
+                <h1>Оформление покупки</h1>
+            </div>
+
+            <div class="form-group">
+                <label for="user_name">Имя</label>
+                <input type="text" id="user_name" placeholder="Ваше имя">
+            </div>
+
+            <div class="form-group">
+                <label for="user_email">Email</label>
+                <input type="email" id="user_email" placeholder="Ваш email">
+            </div>
+
+            <div class="form-group">
+                <label for="user_phone">Телефон</label>
+                <input type="tel" id="user_phone" placeholder="Ваш телефон">
+            </div>
+
+            <div class="divider"></div>
+
+            <button class="buy-button" onclick="submitOrder()">Оформить</button>
+            <button class="back-button" onclick="showMainScreen()">← Назад</button>
+        </div>
+    </div>
+
+    <script>
+        // Функция для показа экрана оформления заказа
+        function showCheckoutScreen() {
+            document.getElementById('main-screen').classList.remove('active');
+            document.getElementById('checkout-screen').classList.add('active');
+        }
+
+        // Функция для возврата на главный экран
+        function showMainScreen() {
+            document.getElementById('checkout-screen').classList.remove('active');
+            document.getElementById('main-screen').classList.add('active');
+        }
+
+        // Функция для отправки заказа
+        function submitOrder() {
+            const name = document.getElementById('user_name').value;
+            const email = document.getElementById('user_email').value;
+            const phone = document.getElementById('user_phone').value;
+
+            if (!name || !email || !phone) {
+                alert('Пожалуйста, заполните все поля!');
+                return;
+            }
+
+            // Здесь можно добавить отправку данных в бота
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.sendData(JSON.stringify({
+                    action: 'order',
+                    name: name,
+                    email: email,
+                    phone: phone
+                }));
+            }
+
+            alert(`Заказ оформлен!\nИмя: ${name}\nEmail: ${email}\nТелефон: ${phone}`);
+
+            // Возврат на главный экран после оформления
+            showMainScreen();
+
+            // Очистка формы
+            document.getElementById('user_name').value = '';
+            document.getElementById('user_email').value = '';
+            document.getElementById('user_phone').value = '';
+        }
+
+        // Инициализация Telegram WebApp
+        if (window.Telegram && Telegram.WebApp) {
+            Telegram.WebApp.ready();
+            Telegram.WebApp.expand();
+        }
+    </script>
+</body>
+</html>
