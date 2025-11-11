@@ -205,7 +205,9 @@
             <button class="back-button" onclick="showMainScreen()">← Назад</button>
         </div>
     </div>
-
+        order.addEventListener("click", () => {
+            tg.close();
+    });
     <script>
         // Функция для показа экрана оформления заказа
         function showCheckoutScreen() {
